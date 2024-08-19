@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <title>Durham Historical Points</title>
+  <meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=1.0, user-scalable=0" />
+  <link href="css/style.css?v=2" rel="stylesheet" type="text/css" media="screen">
+  <style>
+      .info-box {
+          width: 500px; /* Set a fixed width for the info-box */
+          background: rgba(255, 255, 255, 0.9);
+          border: 1px solid #ccc;
+          padding: 10px;
+          position: absolute;
+          display: none;
+          z-index: 1000;
+      }
+
+      .credits {
+      cursor: pointer; /* Indicate that it's clickable */
+      text-decoration: underline; 
+      }
+
+      .credits-box {
+          width: 1200px; /* Set a fixed width for the credits-box */
+          background: rgba(255, 255, 255, 0.9);
+          border: 1px solid #ccc;
+          padding: 20px;
+          position: absolute;
+          display: none;
+          z-index: 1000;
+      }
+
+      .credits-content {
+          display: flex;
+          align-items: center; /* Center vertically */
+      }
+
+      .credits-content img {
+          max-width: 500px; /* Adjust as needed */
+          margin-right: 100px; /* Space between image and text */
+      }
+
+      .credits-content .text {
+          flex: 1; /* Take remaining space */
+      }
+
+      .selector-panel {
+        width: 100%;
+        margin-top: 20px;
+        background-color: #f0f0f0;
+        border-top: 1px solid #ccc;
+        position: relative;
+        z-index: 10;
+      }
+
+      .tabs {
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+        background-color: #ddd;
+      }
+
+      .tab {
+        margin: 0 10px;
+        padding: 10px 20px;
+        cursor: pointer;
+        border: none;
+        font-size: 20px;
+        font-weight: bold;
+        color: #791416;
+        background-color: #eee;
+        transition: background-color 0.3s ease;
+      }
+
+      .tab.active, .tab:hover {
+        background-color: #ccc;
+      }
+
+      .tab-content {
+        display: none;
+        padding: 20px;
+        text-align: left;
+        font-size: 20px;
+      }
+
+      .tab-content.active {
+        display: block;
+      }
+
+  </style>
+</head>
+<body>
+  <div class="view-height">
+    <div class="header-wrapper">
+      <div>
+        <img src="images/modh-logo.jpg" alt="MoDH logo"/>
+        <h1><em>Memories of Durham Story Quilt</em></h1>
+        <p>Each element on this quilt features different stories from throughout Durham's history. The quilt was originally inspired by the countless oral histories collected by the Museum of Durham History, featuring people with first-hand experience of these events. Click on a button and learn about the different memories of Durham's citizens.</p>
+      </div>
+      <div class="instructions"><em><b>Click a circle to learn more.</b></em>
+        <span class="credits" data-info="<div><h2>Credits</h2><img src='logo.png'>
+          <br>The original quilt was created for the Museum of Durham History, completed in January of 2017. 
+          <br><br>The Memories of Durham Story Quilt celebrates Durham's shared heritage, depicted in cloth. The quilt is based on oral histories recorded for the Museum of Durham History Story Room Project. People from diverse backgrounds recalled their memories of Durham during the 1940s to the 1980s, and a selection of these stories formed the basis for the quilt's design. 
+          <br><br>The quilters expressed their artistic interpretation of these memories by using pictures, texts, and fabrics to stitch together pieces, objects and vignettes that capture a collective remembrance deeply rooted in struggle, pride, and community. The quilters hope the Memories of Durham Story Quilt will inspire visitors to the Museum of Durham History to reflect on, remember, and share their own stories and convey the message, 'Your Memories Matter!' 
+          <br><br>We extend a special thank you to the original contributors to the concept, development, design, and creation of the Memories of Durham Story Quilt: Katie Spencer Wright, Founding Executive Director, Museum of Durham History; Sauda Zahra, Story Quilt Project Lead; Jereann King Johnson, Quilter; Veronica Carlisle, Quilter; Nancy Cash, Quilter; Cheryl Breeze, Quilter. This digital presentation of the quilt would not have been possible without the help of the following Museum volunteers: Tom Clayton, Martha Scotford, Bob Pozner, Niyah Major, Cameron Johnson, Alice Chen, Michael Li, and Amy Chou. 
+          <br><br>The Memories of Durham Story Quilt digital presentation project was led by Anmol Sapru and Clay Harrison, and implemented by Carol Thomson and FireStream Media.">
+          <br>Credits
+      </span>
+        
+        <span class="credits" data-info="<div><h2>Citations</h2><img src='logo.png'>
+          <br>-Lucky Strike Water Tower image courtesy of the Library of Congress
+          <br>-Duke Park Pool and Bathhouse image c/o Open Durham
+          <br>-Durham High School and Hillside High School image c/o Open Durham
+          <br>-Watts Street image c/o Open Durham
+          <br>-Fire of March 23, 1914 image c/o Open Durham
+          <br>-Trinity Park image c/o Open Durham
+          <br>-Durham High School Band Officers image c/o the Durham County Library
+          <br>-University Chapel image c/o Wikipedia
+          <br>-City of Medicine image c/o Open Durham
+          <br>-Duke University Hospital image c/o Open Durham
+          <br>-Liggett and Myers New Cigarette Factory image c/o Open Durham
+          <br>-Tobacco Preparation images c/o Durham County Library
+          <br>-North Carolina Mutual Life image c/o Open Durham
+          <br>-Black Wall Street image c/o the North Carolina Department of Natural and Cultural Resources
+          <br>-Kress Building image c/o Open Durham
+          <br>-Martin Luther King Jr. in Durham image c/o the Durham County Library
+          <br>-Carolina Theatre image c/o the Durham County Library
+          <br>-Morris Street image c/o Open Durham
+          <br>-Bull Durham image c/o Wm. Stage
+          <br>-Bailey’s at 1209 West Main image c/o Open Durham
+          <br>-Pettigrew Street image c/o Open Durham
+          <br>-Urban Removal Protest image c/o the Durham County Library
+          <br>-Golden Belt Campus image c/o Open Durham
+          <br>-Fayetteville Gulf Gas image c/o Wikipedia
+          <br>-St Joseph AME image c/o Open Durham
+          <br>-White Rock Baptist Church image c/o Open Durham
+          <br>-Urban Renewal image c/o Open Durham
+          <br>-Hillside High School image c/o Open Durham
+          <br>-North Carolina Central University image c/o Open Durham
+          <br>-Bright Leaf Tobacco image c/o the Historical Marker Database">
+          <br>Citations
+        </span>
+      </div>
+    </div>
+    <div class="content-wrapper">
+      <div class="image-container">
+        <img src="images/background2.jpg" alt="MoDH Quilt">
+        <button class="point" style="top: 70px; left: 412px;" data-info="<img src='Lucky Strike Water Tower.jpg'><div class='text'><strong>Lucky Strike Water Tower</strong>: The Lucky Strike Water Tower rises over the storage space that held a majority of the nation’s tobacco at one point. The Lucky Strike company brought hundreds of employees to work in the factories, with everything in the process from raw to final product being completed here. After cigarette production ended in the area in 1987, the factory area became worn-down and left with no use. The City of Durham started a revitalization project in the area--transforming it into a place to eat, work, live, and watch around the original 175-foot tall Lucky Strike Tower.</div>"></button>
+
+        <button class="point" style="top: 365px; left: 60px;" data-info="<img src='Duke Park Pool and Bathhouse.jpg'><strong>Duke Park Pool and Bathhouse</strong>: Originally farm land owned by the Duke, the Duke Park was created as a natural green space for the residents of the neighborhood with the same name. In the 1930s, the park received redevelopment relief from the Civil Works Administration and Emergency Relief Administration of North Carolina. Due to these efforts, the Duke Park began constructing new recreation offerings, including a pool and bathhouse. The Duke Park pool was segregated, like most community services of the time. This picture was taken in June 1957, by the Durham Herald-Sun. The Duke Park began to lose popularity during the era of integration in the 1960s, and the pool was closed in 1993 due to irreversible mechanical malfunctions. The pool basin has since been filled, and the bathhouse building remains abandoned. Fun Fact: The Duke Park pool hosted the annual “Duke Park Water Pageant”, starting in 1949, somewhat of a precursor to the modern-day Durham Beaver Queen Pageant, an event that also takes place in Duke Park."></button>
+
+        <button class="point" style="top: 420px; left: 360px;" data-info="<img src='Durham High School and Hillside High School.jpg'><strong>Durham High School and Hillside High Schools</strong>: Durham High School was the high school for White Durhamites. This was paired with the high school for African Americans, Hillside High School. This meant the two became the center of integration starting in 1959. Superintendent of Durham Public Schools, Lew W. Hannen set off the path for Joycelyn McKissick and Claudette Brame to enroll. By the 1980s, Durham High School was no longer a majority white school. In 1993, Durham High School ceased to exist as a traditional high school. Hillside continues its legacy as the oldest of the original 300 North Carolina segregated high schools to still be open."></button>
+
+        <button class="point" style="top: 490px; left: 70px;" data-info="<img src='Watts Street.jpg'><strong>Watts Street</strong>: In 1920s, Watts Street was built, carrying on the name of George Washington Watts (1851-1921), who was involved in numerous Durham businesses, including banks and textile factories. Watts Street was closely tied to the development of suburban Durham and served as an important residential area during periods of industrialization. The residents consisted of many professionals, whom together helped to establish Watts Street Baptist Church and George Watts Elementary School. Today, Watts Street still remains as a symbol of cultural heritage in Durham."></button>
+
+        <button class="point" style="top: 620px; left: 390px;" data-info="<img src='Fire of March 23 1914.jpg'><strong>Fire of March 23, 1914</strong>: The south side of the 100 block of W. Parrish St., extending to W. Main St.,suffered damage in the 1914 fire. Buildings were rebuilt, with some extending to W. Main St. In 1923, businesses included Upchurch O C & Co, Ford & Co, United Brotherhood of Carpenters & Joiners, Tillman R C, Parrish St Barber Shop, Durham Book & Stationery Co, Rawls-Knight Company, King and Co., Pollard Bros, Hill & Co, Durham Seed House Inc, Woolworth F W & Co, Ellis Stone & Co, and Kramer H M Tob Co Inc."></button>
+
+        <button class="point" style="top: 635px; left: 180px;" data-info="<img src='Trinity Park.jpeg'><strong>Trinity Park</strong>: Homes were built for Trinity College professors in 1891 in the Trinity Park neighborhood we know of today. Over the years, the neighborhood evolved and expanded, but started declining in the 1950s when people were moving into the suburbs. As a result, city administrations started demolishing historic sites, which angered the residents of the area. After years of protesting and persuasion toward the government, the community prevented the government from replacing historic houses with high-density apartments. The Trinity Park association and its residents documented 365 historic structures around the Trinity College, which was registered in the National Register of Historic Places. Today, the Trinity Park neighborhood is one of the most intact historic neighborhoods in the triangle. It is located near Brightleaf Square and Ninth Street."></button>
+
+        <button class="point" style="top: 1070px; left: 385px;" data-info="<img src='Durham High School Band Officers.jpg'><strong>Durham High School Band Officers</strong>: This image features the Band Officers of Durham High School, from the 1950 edition of the school’s yearbook, The Messenger. In 1922, construction for the school’s building was completed at 401 North Duke Street, initially called Central High School. Durham High School first integrated in 1959, ceased to exist as a traditional high school in 1993, and reopened in 1995 as the newly-named Durham School of the Arts."></button>
+
+        <button class="point" style="top: 1400px; left: 375px;" data-info="<img src='Duke University Chapel.jpg'><strong>Duke University Chapel</strong>: As a profound symbol of faith on campus, the Chapel acts as the moderator for religious life at Duke. Chapel services have always been ecumenical, and the Chapel itself is a sanctuary open to all people throughout the year. In partnership with the Division of Student Affairs, Duke Chapel convenes, supports, and advocates for all recognized Religious Life groups on campus that serve students, including Buddhist, Catholic, Hindu, Jewish, Mormon, Muslim and Protestant organizations and groups. Standing at 210 feet in the center of campus, the architectural style is English Gothic designed by the Horace Trumbauer firm of Philadelphia with its chief designer Julian Abele, America’s first black architect of renown. The cornerstone was laid in 1930, and the Chapel was dedicated in 1935."></button>
+
+        <button class="point" style="top: 1650px; left: 60px;" data-info="<img src='City of Medine.jpg'><strong>City of Medicine</strong>: With the birth of the Research Triangle Park in the 1950’s, Durham began to evolve into a global center for information technology, biotechnology, pharmaceuticals, and medicine. It is famously known as the ’City of Medicine,’ with healthcare as a major industry including more than 300 medical and health-related companies and medical practices."></button>
+
+        <button class="point" style="top: 1730px; left: 330px;" data-info="<img src='Duke University Hospital.jpg'><strong>Duke University Hospital</strong>: In 1925, James B. Duke willed $4 million to establish Duke University Hospital and its medical and nursing schools. His goal: to improve health care in the Carolinas, then a poor rural region lacking in hospitals and health care providers. Two years later, construction began on the original hospital (now, the Duke Clinic), which opened in 1930 with 400 beds. Today, Duke University Hospital is the flagship of the Duke University Health System, and a full-service, 957-bed, three million square foot tertiary and quaternary academic medical center."></button>
+
+        <button class="point" style="top: 1990px; left: 75px;" data-info="<img src='Liggett and Myers New Cigarette Factory.jpg'><strong>Liggett and Myers New Cigarette Factory</strong>: The Liggett and Myers New Cigarette Factory was built in 1948.This six story building was built on a lot that had been used as a parking lot, and was the site of the factory’s office building. This building was distinguished by a billboard on top of the roof until the 1980’s, which advertised Chesterfield cigarettes which was the company’s leading brand. The building was vacated in the 2000’s after Liggett and Myers closed their Durham operation."></button>
+
+        <button class="point" style="top: 1990px; left: 370px;" data-info="<img src='Tobacco Preperation1.jpg'><strong>Tobacco Preparation</strong>: Durham’s economy is rooted in tobacco, a once-dominant industry in the Piedmont area of North Carolina. Several companies provided jobs that attracted people to Durham, including the Bull Durham Tobacco Company, the American Tobacco Company, and Liggett & Myers Tobacco. These images offer a look into the production process of tobacco crops. Jimmy Long, pictured on the left, adds sugar to the casing mixing kettle, one of the many flavorings in tobacco. The middle photograph is of James Nichols using a scale to measure appropriate portions of tobacco to add to the blend. On the right, we see women working to ‘stem’ the tobacco, or picking off the excess from the leaves."></button>
+
+        <button class="point" style="top: 290px; left: 1220px;" data-info="<img src='North Carolina Mutual Life.jpg'><strong>North Carolina Mutual Life</strong>: North Carolina Mutual Life Insurance Company was founded in 1898, becoming a pioneer of Black Wall Street. African Americans were often not protected due to short life expectancies and poor health stemming from low income. Despite this, John C. Merrick decided that the opportunity to help blacks outweighed the risk, and he joined with investors to create a company that was the largest African American-run company for much of the 20th century."></button>
+
+        <button class="point" style="top: 390px; left: 1170px;" data-info="<img src='Black Wall Street.jpg'><strong>Black Wall Street</strong>: Parrish Street was nicknamed “Black Wall Street” for its booming businesses led by African American entrepreneurs. This area was about four blocks and was to the north of the Hayti community. Notable enterprises include N.C. Mutual Life Insurance Co., which was led by John Merrick, Dr. Aaron Moore, and C.C. Spaulding. This insurance company was the largest black-owned insurance company in the nation. This region prospered from around 1906 until the 1960s, when urban renewal programs in Durham slowly disintegrated the community."></button>
+
+        <button class="point" style="top: 570px; left: 1210px;" data-info="<img src='Kress Building.jpg'><strong>Kress Building</strong>: The Kress Building located at 101 West Main Street in Durham, NC, at the cross street of South Mangum Street, was constructed in 1932. It showcases the Art Deco architectural style, a popular design choice of that era, characterized by its masonry tile construction. Situated in the Downtown Central neighborhood, this property was originally used as a department store, reflecting its commercial building type. Its design and use highlight its role in Durham's urban landscape during the early 20th century, serving as a testament to the city's commercial development and architectural evolution during that period."></button>
+
+        <button class="point" style="top: 785px; left: 1160px;" data-info="<img src='Martin Luther King Jr in Durham.jpg'><strong>Martin Luther King Jr. in Durham</strong>: On February 2, 1960, Martin Luther King, Jr., a pivotal figure in the American civil rights movement, was captured in a momentous walk along West Main Street towards Woolworth in Durham County, North Carolina. Accompanying him were notable civil rights activists: Douglas Moore, pastor of the Asbury Temple Methodist Church in Durham, and Ralph Abernathy, both key figures in the movement. The photograph also includes an unidentified person on the far right, highlighting the collective effort of known and unknown individuals in the struggle for civil rights. This event underscores Durham's significance in the broader civil rights demonstrations across North Carolina and the nation, marking a critical moment in the ongoing fight against racial segregation and inequality, with leaders like King at the forefront of advocating for justice and equality."></button>
+
+        <button class="point" style="top: 940px; left: 790px;" data-info="<img src='Carolina Theatre.jpg'><strong>Carolina Theatre</strong>: The Carolina Theatre was built in 1926, when prejudicial Jim Crow laws were enforced throughout the South. During this period black patrons were forced to obtain their tickets at a second window, and had limited access to the second balcony which required them to walk up 97 steps. On November 2, 1960, the protest began against the Carolina Theatre which was led by The National Association for the Advancement of Colored People (NAACP). The NAACP focused on the illegality of a city-owned venue upholding laws of segregation, protesters would get in line for a ticket and when refused they would get back in line to try again. On August 5, 1963, the city of Durham desegregated the theater, in today’s theater the protesters who risked their livelihoods to open the doors for everyone at the theater are being recognized on the walls of the Carolina Theatre."></button>
+
+        <button class="point" style="top: 1165px; left: 980px;" data-info="<img src='Morris Street.jpg'><strong>Morris Street</strong>: The circa 1982 photograph depicts the south facade and loading dock of a building in Durham County, North Carolina. Signs indicate the presence of various businesses, including Kyanize Paints Warehouse, Citizens Press, Colonial Flooring and Acoustical Company, and D. C. May Decorating and Painting. The image provides a glimpse into the commercial landscape of Durham during the early 1980s, showcasing the presence of businesses involved in construction, printing, and painting services. This photograph serves as a historical record, capturing the architectural and economic characteristics of the area during that period."></button>
+
+        <button class="point" style="top: 1080px; left: 1230px;" data-info="<img src='Bull Durham.png'><strong>Bull Durham</strong>: The WT Blackwell Company factory was completed in 1874 at the present day corner of West Pettigrew and Blackwell Streets. The L-shaped masonry Italianate structure was the first brick tobacco factory in the U.S. The factory had a loud factory whistle which supposedly imitated a bellowing bull. The building was expanded in 1879 so that the building was shaped like a squared ’U.’ In 1903, the ’U’ shaped building was further expanded and became a squared ’O’. The Golden Belt Manufacturing Company, formed in 1887, was originally located in the original ’L’ wing of the Old Bull Building before moving in 1899. After absorption into the American Tobacco Trust the original building became known as ’Old Bull’. Around 1930, the top two floors of the original building were removed. In 1965 the facade of Old Bull was covered with pink metal. In 1987, the American Tobacco Company shut down operations in Durham and the Old Bull Building was abandoned. Old Bull was renovated from 2007 through the early 2010s."></button>
+
+        <button class="point" style="top: 1380px; left: 1195px;" data-info="<img src='Baileys at 1209 West Main.jpg'><strong>Bailey’s at 1209 West Main</strong>: This is a photo of the Bailey’s drive-up/curbside diner, as well as an Esso gas station. This 1956 shot shows it as a well-trafficked spot for Duke students. This West Main Street area of Durham catered heavily to university students, especially eateries. Listen to oral histories on our YouTube channel and check out our online exhibit, Dining Out in Durham, to learn about other establishments that fed Durham’s academic community."></button>
+
+        <button class="point" style="top: 1610px; left: 1260px;" data-info="<img src='Pettigrew Street.jpeg'><strong>Pettigrew Street</strong>: 414-416 East Pettigrew was built around 1920, and remodeled by the late 1920s. 414 initially housed the Liberty Bakery, and 416 the Self-Serve Grocery. By the late 1920s, the Liberty Cafe had been replaced by Red Bird Ice Cream. In the 1930s, 414 housed Midway Lunch, and 416 housed John Trohatos' restaurant. By the 1940s, 414 housed Wilson's Sport Shop (a pool hall) and 416 the Wonderland Barber Shop and Beauty Shop. By 1972, 414 housed the Durham Deliverance Center while the Wonderland Barber and Beauty shop was still at 416. By the late-1970s the building was torn down. After becoming an overgrown, wooded parcel for ~15 years, this parcel became a parking lot for Rick Hendrick Chevrolet in the late 1990s."></button>
+
+        <button class="point" style="top: 1740px; left: 1130px;" data-info="<img src='Urban Removal Protest.jpg'><strong>Urban Removal Protest</strong>: In 1960, Durham narrowly passed a bond issue for urban renewal projects and for an expressway to Research Triangle Park that would bisect the Hayti community. The Durham Redevelopment Commission was formed to oversee multiple projects including the redevelopment of the African American Hayti neighborhood, downtown Durham, and the neighborhood around North Carolina Central. The expectation was that the “urban blight” of dilapidated buildings and condemned houses would be replaced by better accommodations. Yet over the years, for reasons related to leadership, local management, unforeseen side effects, and racial bias, the promised accommodations failed to materialize. Resulting in protest, especially among poor African Americans who had lost their homes and communities. Urban renewal became known as ’urban removal.’"></button>
+
+        <button class="point" style="top: 630px; left: 1660px;" data-info="<img src='Golden Belt Campus.jpg'><strong>Golden Belt Campus</strong>: The Golden Belt Manufacturing Company originated in 1887 in a portion of the Bull Durham Tobacco Factory as an operation to produce the cloth bags in which tobacco was sold. Following Bull Durham’s purchase by American Tobacco, Golden Belt continued as its principal bag provider. So in 1901, Golden Belt Manufacturing constructed a new factory at Main Street and Angier Avenue. The new facility included a cotton mill, a bag mill, a warehouse building, a power plant, and a house-like office building facing East Main. It employed 700 people, predominantly female. The company also constructed 50 mill houses to the east of the factory to house families."></button>
+
+        <button class="point" style="top: 790px; left: 1560px;" data-info="<img src='Fayetteville Gulf Gas.jpg'><strong>Fayetteville Gulf Gas</strong>: In the 1930s, a commercial site at the northeast corner of Glenn Street and Fayetteville Street in Durham's Hayti neighborhood was developed with a small stucco structure adjacent to a two-story frame structure. Initially, it housed the Durham Sandwich Shop and Carolina Cab Company, as indicated by the 1944 marquee. Over the years, the property saw several changes in occupancy, transitioning to the Central Electric Shoe Shop, Carlton's Market, and eventually Jimmy's Food Store. However, in 1953, a devastating fire destroyed the buildings. This site reflects the dynamic commercial history of the Hayti area, showcasing a series of transformations that highlight the economic and cultural shifts within the community over two decades."></button>
+
+        <button class="point" style="top: 1120px; left: 1440px;" data-info="<img src='St Joseph AME.jpg'><strong>St Joseph AME</strong>: St. Joseph AME church began in 1868 as outdoor prayer meetings, then a log cabin. Organized the next year as Union Bethel African Methodist Episcopal Church, it was renamed in 1892 when the cornerstone was laid at the first Fayetteville Street location. From the beginning, the church was dedicated to missionary work and early childhood education. In 1976 its pastor was elected the first AME bishop from North Carolina."></button>
+
+        <button class="point" style="top: 1170px; left: 1510px;" data-info="<img src='White Rock Baptist Church.jpg'><strong>White Rock Baptist Church</strong>: White Rock Baptist Church, established in 1866, evolved from the home prayer meetings of recently freed slaves. Originally known as First Baptist Church, then Colored Missionary Baptist Church, it is Durham’s first African American church. In addition to spiritual support for its own community, the members have engaged in activities to benefit Black lives more widely. Projects developed rural schools elsewhere in North Carolina, and improved educational and professional opportunities for individuals, many of whom became leaders in business, education, medicine, banking and insurance in Durham."></button>
+
+        <button class="point" style="top: 1130px; left: 1760px;" data-info="<img src='Urban Renewal.jpg'><strong>Urban Renewal</strong>: Although faced with controversy and criticism, the urban renewal of Durham in the 1960s led to a lot of development. The worst slum areas with derelict housing were replaced with commercial developments and better houses. Many public facilities were built, and many streets emerged for pedestrians to walk on. Unfortunately, while the function and aesthetic of Durham downtown improved, these developments hurt the Hayti neighborhood immensely, permanently displacing many poor black residents."></button>
+
+        <button class="point" style="top: 1730px; left: 1855px;" data-info="<img src='Hillside High School.jpg'><strong>Hillside High School</strong>: Before the establishment of Whitted School in 1887, Durham's largest black educational institutions were the Ledger Public School in Hayti, led by Miss Ledger, and the Hack Road Public School, supervised by James Whitted, a self-educated man of mixed heritage (Black and Indian). The Whitted School, named in honor of James A. Whitted, its first principal, initially opened on the corner of Blackwell and Pettigrew Streets. However, it burned down in 1888 and was temporarily relocated to a Bull Factory warehouse. By 1890, the school had 161 students across six grades, with Whitted and three other teachers covering different grade levels. The first ninth-grade class graduated in 1896, the same year a permanent brick facility was built on Proctor and Ramsey Street at a cost of $8,000. This building was destroyed and rebuilt in 1899, with classes held in churches during the reconstruction. In 1901, the West End School for black children was established, with 707 students enrolled in Durham's black schools at the time."></button>
+
+        <button class="point" style="top: 1740px; left: 1480px;" data-info="<img src='North Carolina Central University.jpg'><strong>North Carolina Central University</strong>: The foundation of North Carolina Central University was largely due to James E. Shepard's dedication, a Baptist minister's son, who sought to provide theological and religious education to African Americans. Initially planning the campus in South Carolina, Shepard settled on Durham, NC, and founded ’The National Religious Training School and Chautauqua for the Colored Race’ in 1909 with land donated by Brodie Duke. Despite financial struggles and skepticismfrom the General Education Board, which preferred manual training models, Shepard's vision persevered. The school, initially supported by private philanthropy, including contributions from notable individuals like Margaret Olivia Slocum Sage and Woodrow Wilson, faced closure in 1915 but was reorganized as the National Training School, continuing Shepard's mission."></button>
+
+        <button class="point" style="top: 1970px; left: 1475px;" data-info="<img src='Bright Leaf Tobacco.jpg'><strong>Bright Leaf Tobacco</strong>: In 1839 an enslaved man by chance discovered a faster way to cure tobacco in Caswell County, North Carolina. Steven Slade was a blacksmith also monitoring the curing process. Needing to quickly restore a fire he used charcoal from his smithing pit; the intense heat hastened the curing and turned the tobacco leaves bright yellow. The flue-cured tobacco was known as ‘bright leaf,’ and the process adopted by most NC farmers who built the curing barns still seen in rural areas. Slade’s owner was very successful, and NC Bright Leaf tobacco came to dominate the US market."></button>
+        <div class="info-box"></div>
+        <div class="credits-box"></div>
+        <div class="selector-panel">
+          <div class="tabs">
+            <button class="tab active" data-tab="tab1"><b>Creating the Quilt</b></button>
+            <button class="tab" data-tab="tab2"><b>Theme: Pride</b></button>
+            <button class="tab" data-tab="tab3"><b>Theme: Struggle</b></button>
+            <button class="tab" data-tab="tab4"><b>Theme: Community</b></button>
+          </div>
+          <div class="tab-content active" id="tab1">
+            <p>"The Story Quilt" project was led by Katie Spencer Wright, Sauda Zahra, Nancy Cash, and Veronica Carlisle, inspired by a quilt at NCCU. The process began with oral histories of Durham residents, a core focus of the MoDH. Throughout the process, volunteers played a crucial role, in supporting research, conducting interviews, and gathering key details. 
+              <br><br>Lead quilter Sauda Zahra created a workflow process emphasizing three themes: Pride, Struggle, and Community. The quilt's elements are arranged geographically, with Nancy handling East Durham, Sauda Downtown, and Veronica Carlisle overseeing West Durham. The team spent over 300 hours crafting the quilt, capturing Durham's history and spirit through their collective effort.
+            </p>
+          </div>
+          <div class="tab-content" id="tab2">
+            <p>The cornerstones for the Memories of Durham Story Quilt are Struggle, Pride and Community and these themes were integral to the design concept for creating the story quilt. After listening to interviews from Durham residents who shared memories of Durham during the 1940s to 1980s, it became apparent that regardless of race, class, economic status, neighborhoods, education and religion, the interviewees experienced struggle, pride, and a sense of community in Durham. How the interviewees experienced struggle, pride and community depended on the personal or communal lens in which they recalled their memories of Durham. A memory may have described pride, struggle or community as a separate experience; or pride, struggle and community as multiple experiences interconnected to a single memory. 
+              <br><br><b>Pride expressed in family, growing up in close-knit neighborhoods; economic possibilities from the tobacco and medical industries; coalition building to progress as a city; Durham’s rich cultural heritage; prominent family legacies; Durham’s growth from a small town to a city; and historical buildings and educational institutions that bridge the past, present, and future. </b></p>
+          </div>
+          <div class="tab-content" id="tab3">
+            <p>The cornerstones for the Memories of Durham Story Quilt are Struggle, Pride and Community and these themes were integral to the design concept for creating the story quilt. After listening to interviews from Durham residents who shared memories of Durham during the 1940s to 1980s, it became apparent that regardless of race, class, economic status, neighborhoods, education and religion, the interviewees experienced struggle, pride, and a sense of community in Durham. How the interviewees experienced struggle, pride and community depended on the personal or communal lens in which they recalled their memories of Durham. A memory may have described pride, struggle or community as a separate experience; or pride, struggle and community as multiple experiences interconnected to a single memory. 
+              <br><br><b>Struggle experienced navigating two Durhams separated by race and class; people treated differently; access and opportunities denied to segments of the population; poverty; the civil rights movement; and surviving during the recession. </b></p>
+          </div>
+          <div class="tab-content" id="tab4">
+            <p>The cornerstones for the Memories of Durham Story Quilt are Struggle, Pride and Community and these themes were integral to the design concept for creating the story quilt. After listening to interviews from Durham residents who shared memories of Durham during the 1940s to 1980s, it became apparent that regardless of race, class, economic status, neighborhoods, education and religion, the interviewees experienced struggle, pride, and a sense of community in Durham. How the interviewees experienced struggle, pride and community depended on the personal or communal lens in which they recalled their memories of Durham. A memory may have described pride, struggle or community as a separate experience; or pride, struggle and community as multiple experiences interconnected to a single memory. 
+              <br><br><b>Community embraced through a melting pot of people and diverse cultures; coming together in public spaces and attending events; family ties; religious affiliations; historical neighborhoods; witnessing pivotal moments in Durham’s history; and individual, family and city roots intertwined in Durham’s identity. </b></p>
+          </div>          
+          
+        </div>
+      </div>
+    </div>
+  </div>  
+  
+  <script>
+    document.querySelectorAll('.point').forEach(function(point) {
+        point.addEventListener('click', function(e) {
+            var infoBox = document.querySelector('.info-box');
+            var imageContainer = document.querySelector('.image-container');
+            var buttonRightEdge = e.target.offsetLeft + e.target.offsetWidth;
+            var containerRightEdge = imageContainer.offsetWidth;
+            var infoBoxLeft = buttonRightEdge + 10; // Default position to the right
+            var infoBoxTop = e.target.offsetTop; // Default top position
+
+            // Ensure the info box is positioned to the right of the button but does not go beyond the image width
+            if (infoBoxLeft + infoBox.offsetWidth > containerRightEdge) {
+                // If it goes beyond the image width, try positioning to the left
+                infoBoxLeft = e.target.offsetLeft - infoBox.offsetWidth - 10;
+                if (infoBoxLeft < 0) {
+                    // If still out of bounds, center align with the button
+                    infoBoxLeft = e.target.offsetLeft;
+                }
+            }
+
+            // Apply the calculated positions temporarily to get the height of the info-box
+            infoBox.style.display = 'block';
+            infoBox.style.top = infoBoxTop + 'px';
+            infoBox.style.left = infoBoxLeft + 'px';
+            infoBox.innerHTML = point.getAttribute('data-info');
+
+            // Now check if the info box goes beyond the bottom of the background image
+            var infoBoxBottom = infoBox.offsetTop + infoBox.offsetHeight;
+            var containerBottomEdge = imageContainer.offsetHeight;
+
+            if (infoBoxBottom > containerBottomEdge) {
+                // If it goes beyond the bottom edge, position above the button
+                infoBoxTop = e.target.offsetTop - infoBox.offsetHeight - 10;
+                // Reapply the positions
+                infoBox.style.top = infoBoxTop + 'px';
+            }
+
+            // Prevent the document click listener from hiding the info box immediately
+            e.stopPropagation();
+        });
+    });
+
+    document.addEventListener('click', function() {
+        var infoBox = document.querySelector('.info-box');
+        infoBox.style.display = 'none';
+        var creditsBox = document.querySelector('.credits-box');
+        creditsBox.style.display = 'none';
+    });
+
+    document.querySelectorAll('.credits').forEach(function(credit) {
+        credit.addEventListener('click', function(e) {
+            console.log('Credits clicked'); // Debugging log
+            var creditsBox = document.querySelector('.credits-box');
+            var content = '<div class="credits-content"><img src="logo.png" alt="Credits Image">' +
+                          '<div class="text">' + this.getAttribute('data-info').replace(/<img src='logo.png'>/, '') + '</div></div>';
+            creditsBox.innerHTML = content;
+
+            const pageWidth = window.innerWidth || document.documentElement.clientWidth;
+            const pageHeight = window.innerHeight || document.documentElement.clientHeight;
+
+            creditsBox.style.display = 'block'; // Make it visible to measure
+            const boxWidth = creditsBox.offsetWidth;
+            const boxHeight = creditsBox.offsetHeight;
+
+            creditsBox.style.left = '400px';
+            creditsBox.style.top = '100px';
+
+            e.stopPropagation();
+        });
+    });
+
+    document.querySelectorAll('.tab').forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        var activeTab = document.querySelector('.tab.active');
+        var activeContent = document.querySelector('.tab-content.active');
+
+        activeTab.classList.remove('active');
+        activeContent.classList.remove('active');
+
+        this.classList.add('active');
+        var tabId = this.getAttribute('data-tab');
+        document.getElementById(tabId).classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
