@@ -46,7 +46,7 @@ h1 {font-size:1.5rem; padding-bottom:10px;}
     position: absolute;
     width: 75px; /* Size of the buttons */
     height: 75px; /* Size of the buttons */
-    background-color: rgba(255, 255, 255, 0.7); /* Slightly transparent white */
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
     border-radius: 50%; /* Circular buttons */
     border: 3px solid red; /* Red border */
     cursor: pointer;
@@ -64,7 +64,7 @@ h1 {font-size:1.5rem; padding-bottom:10px;}
     word-wrap: break-word;
     font-size: 1.2rem;
     background-color:#fff; 
-    opacity:0.87; 
+    opacity:0.97; 
     color:#000;
     border-radius:10px;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
